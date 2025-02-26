@@ -5,13 +5,14 @@ public class Smartphone extends Product {
     private int imei;
     private int memory;
 
-    public Smartphone(String nome,String descrizione,float prezzo,int iva){
-        super(nome, descrizione, prezzo, iva);
-    }
-    public Smartphone(String nome,String descrizione,float prezzo,int iva, int imei, int memory){
-        super(nome, descrizione, prezzo, iva);
+    public Smartphone(String nome,String descrizione,float prezzo, int imei, int memory){
+        super(nome, descrizione, prezzo);
         this.imei= imei;
         this.memory = memory;
+    }
+    @Override
+    public String getName(){
+        return "nome telefono: "+super.getName();
     }
 
     public int getImei(){
@@ -26,5 +27,12 @@ public class Smartphone extends Product {
     }
     public void setMemory(int memory){
         this.memory = memory;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+ 
+        "\nimei: "+this.imei+
+        "\nmemory: "+this.memory;
     }
 }

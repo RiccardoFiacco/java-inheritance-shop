@@ -5,11 +5,8 @@ public class Tv extends Product {
     private int dimension;
     private boolean smart;
 
-    public Tv(String nome,String descrizione,float prezzo,int iva){
-        super(nome, descrizione, prezzo, iva);
-    }
-    public Tv(String nome,String descrizione,float prezzo,int iva,int dimension, boolean smart){
-        super(nome, descrizione, prezzo, iva);
+    public Tv(String nome,String descrizione,float prezzo,int dimension, boolean smart){
+        super(nome, descrizione, prezzo);
         this.dimension = dimension;
         this.smart = smart;
     }
@@ -28,4 +25,10 @@ public class Tv extends Product {
         this.smart = smart;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+ 
+        "\ndimensione: "+this.dimension+
+        "\nsmart: "+this.smart;
+    }
 }
