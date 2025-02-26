@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import exercise.headphone.Headphone;
+import exercise.product.Product;
 import exercise.smartphone.Smartphone;
 import exercise.tv.Tv;
 
@@ -8,13 +9,15 @@ public class Cart {
     public static void main(String[] args) throws Exception {
         Scanner s = new Scanner(System.in);
         boolean flag = true;
-        Object[] cart = new Object[0];
+        Product[] cart = new Product[0];
 
         while(flag){
-            System.out.println("aggiungi 1. telefono 2. tv. 3. cuffie\n");
-            int choice = s.nextInt();
 
-            if(choice != 1 || choice != 2 || choice != 3){
+            System.out.println("aggiungi \n1.telefono \n2.tv. \n3.cuffie \n4 guarda il carrello \n");
+            int choice = s.nextInt();
+            s.nextLine();
+
+            if(choice != 1 && choice != 2 && choice != 3 && choice != 4){
                 System.out.println("inserisci un valore corretto");
             }else{
                 if(choice==1){
@@ -25,7 +28,7 @@ public class Cart {
                     String descr = s.nextLine(); 
 
                     System.out.println("prezzo telefono\n");
-                    int price = s.nextInt(); 
+                    float price = s.nextFloat(); 
 
                     System.out.println("codice imei telefono\n");
                     int code = s.nextInt(); 
@@ -35,13 +38,15 @@ public class Cart {
 
                     Smartphone smartphone = new Smartphone(name, descr, price, code, memory);
 
-                    Object[] newcCart = new Object[cart.length+1];
+                    Product[] newcCart = new Product[cart.length+1];
 
-                    for (int i = 0; i < newcCart.length; i++) {
-                        newcCart[i] = cart[i];
+                    for (int i = 0; i < cart.length; i++) {
+                        newcCart[i]=cart[i];
                     }  
 
-                    newcCart[cart.length - 1] = smartphone;
+                    newcCart[newcCart.length - 1] = smartphone;
+                    cart = newcCart;
+
                 } else if(choice==2){
                     System.out.println("nome tv\n");
                     String name = s.nextLine(); 
@@ -50,7 +55,7 @@ public class Cart {
                     String descr = s.nextLine(); 
 
                     System.out.println("prezzo tv\n");
-                    int price = s.nextInt(); 
+                    float price = s.nextFloat(); 
 
                     System.out.println("dimensioni tv\n");
                     int dimension = s.nextInt(); 
@@ -60,13 +65,14 @@ public class Cart {
 
                     Tv tv = new Tv(name, descr, price, dimension, smart);
 
-                    Object[] newcCart = new Object[cart.length+1];
+                    Product[] newcCart = new Product[cart.length+1];
 
-                    for (int i = 0; i < newcCart.length; i++) {
-                        newcCart[i] = cart[i];
+                    for (int i = 0; i < cart.length; i++) {
+                        newcCart[i]=cart[i];
                     }  
-                    
-                    newcCart[cart.length - 1] = tv;
+ 
+                     newcCart[newcCart.length - 1] = tv;
+                     cart = newcCart;
 
                 }else if(choice==3){
                     System.out.println("nome cuffie\n");
@@ -76,7 +82,7 @@ public class Cart {
                     String descr = s.nextLine(); 
 
                     System.out.println("prezzo cuffie\n");
-                    int price = s.nextInt(); 
+                    float price = s.nextFloat(); 
 
                     System.out.println("dimensioni cuffie\n");
                     String color = s.nextLine(); 
@@ -86,17 +92,39 @@ public class Cart {
 
                     Headphone cuffie = new Headphone(name, descr, price, color, wireless);
 
-                    Object[] newcCart = new Object[cart.length+1];
+                    Product[] newcCart = new Product[cart.length+1];
 
-                    for (int i = 0; i < newcCart.length; i++) {
-                        newcCart[i] = cart[i];
+                    for (int i = 0; i < cart.length; i++) {
+                        newcCart[i]=cart[i];
                     }  
-                    
-                    newcCart[cart.length - 1] = cuffie;
+ 
+                    newcCart[newcCart.length - 1] = cuffie;
+                    cart = newcCart;
+
+                }else if(choice==4){
+                    for (Product product : cart) {
+                        System.out.println(product);
+                        System.out.println("-------");
+                    }
                 }
 
             }
-
+            s.nextLine();
+            while (flag) {
+                System.out.println("\nfare altro? y/n");
+                String next = s.nextLine();
+                if(next.equals("n") || next.equals("y")){
+                    if(next.equals("n")){
+                        flag = false;
+                    }else{
+                        break;
+                    }
+                }else{
+                    System.out.println("\ninserisci y o n");
+                }
+            }
+            
+            
         }
         System.out.println("CIAO");
         s.close();
